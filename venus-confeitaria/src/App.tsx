@@ -1,11 +1,24 @@
-import { Heart, ShoppingCart, ShoppingBag, Search, BookOpen, GitBranch, Share2, Phone, Award, MapPin, Headphones } from 'lucide-react'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faInstagram, faFacebook, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
+import {
+  faHeart,
+  faCartShopping,
+  faCoins,
+  faMagnifyingGlass,
+  faBookOpen,
+  faCakeCandles,
+  faLocationDot,
+  faHeadphones
+} from '@fortawesome/free-solid-svg-icons'
+import logo from './assets/logo.png' // Verifique se o caminho está correto em relação ao App.tsx
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-[#fff0f5] font-sans text-gray-800 pb-12">
+    <div className="min-h-screen bg-[#FFF0FA] font-sans text-gray-800 pb-12">
       
       {/* HEADER VINHO */}
-      <header className="bg-[#9d1d5a] text-white p-4 sticky top-0 z-50 shadow-md">
+      <header className="bg-[#AA1F64] text-white p-4 sticky top-0 z-50 shadow-md">
         <div className="max-w-7xl mx-auto flex justify-between items-center px-4">
           
           {/* Busca */}
@@ -15,14 +28,14 @@ export default function App() {
               placeholder="Buscar..." 
               className="bg-transparent border-none text-xs w-full outline-none text-gray-800 placeholder:text-gray-400" 
             />
-            <Search size={14} className="text-gray-400" />
+            <FontAwesomeIcon icon={faMagnifyingGlass} size="sm" className="text-gray-400" />
           </div>
 
           {/* Logo Central */}
           <div className="flex flex-col items-center">
             <div className="w-16 h-16 bg-white rounded-full p-1 border-2 border-pink-200 shadow-inner">
-              <div className="w-full h-full rounded-full bg-gray-100 flex items-center justify-center text-[#9d1d5a] font-bold">
-                LOGO
+              <div className="w-full h-full rounded-full bg-gray-100 flex items-center justify-center text-[#AA1F64] font-bold">
+                <img src={logo} alt="Logo Vênus Confeitaria" className="w-full h-full object-contain" />
               </div>
             </div>
             <p className="text-[10px] italic mt-2 opacity-90">
@@ -32,13 +45,13 @@ export default function App() {
 
           {/* Ações */}
           <div className="flex items-center gap-6">
-            <button className="bg-white text-[#9d1d5a] px-5 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-pink-50 transition">
+            <button className="bg-white text-[#AA1F64] px-5 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-pink-50 transition">
               Fazer Login
             </button>
             <div className="flex gap-4">
-              <Heart size={24} className="cursor-pointer hover:text-pink-300" />
-              <ShoppingCart size={24} className="cursor-pointer hover:text-pink-300" />
-              <ShoppingBag size={24} className="cursor-pointer hover:text-pink-300" />
+              <FontAwesomeIcon icon={faHeart} size="xl" className="cursor-pointer hover:text-pink-300" />
+              <FontAwesomeIcon icon={faCartShopping} size="xl" className="cursor-pointer hover:text-pink-300" />
+              <FontAwesomeIcon icon={faCoins} size="xl" className="cursor-pointer hover:text-pink-300" />
             </div>
           </div>
         </div>
@@ -46,7 +59,7 @@ export default function App() {
 
       {/* CARROSSEL (Simulado) */}
       <section className="max-w-6xl mx-auto px-4 py-8">
-        <div className="relative h-64 md:h-80 rounded-[2rem] overflow-hidden shadow-xl bg-white flex items-center justify-center border-8 border-white">
+        <div className="relative h-64 md:h-80 rounded-4xl overflow-hidden shadow-xl bg-white flex items-center justify-center border-8 border-white">
            <p className="text-gray-400 font-serif italic text-2xl">espaço para o carrossel</p>
            {/* Aqui entrariam as imagens dos brigadeiros da sua foto */}
         </div>
@@ -65,7 +78,7 @@ export default function App() {
                   <div className="w-full h-full bg-pink-100 flex items-center justify-center text-[10px] text-pink-400 uppercase">Doce {i}</div>
                 </div>
                 <p className="text-[10px] font-bold text-center">Torta de Morango</p>
-                <p className="text-[9px] text-[#9d1d5a] font-bold">R$ 12,00</p>
+                <p className="text-[9px] text-[#AA1F64] font-bold">R$ 12,00</p>
               </div>
             ))}
           </div>
@@ -79,48 +92,66 @@ export default function App() {
           <div className="flex flex-wrap justify-center gap-8">
             {['Chocolate', 'Bolos', 'Brownies', 'Cookies'].map((cat) => (
               <div key={cat} className="flex flex-col items-center gap-3">
-                <div className="w-24 h-24 rounded-full border-2 border-[#9d1d5a] p-1 bg-white shadow-md">
+                <div className="w-24 h-24 rounded-full border-2 border-[#AA1F64] p-1 bg-white shadow-md">
                   <div className="w-full h-full rounded-full bg-pink-50"></div>
                 </div>
-                <span className="text-[10px] font-bold uppercase tracking-widest text-[#9d1d5a]">{cat}</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-[#AA1F64]">{cat}</span>
               </div>
             ))}
             <div className="flex flex-col items-center gap-3">
               <div className="w-24 h-24 rounded-full bg-white flex items-center justify-center border-2 border-white shadow-md">
-                <BookOpen size={30} className="text-[#9d1d5a]" />
+                <FontAwesomeIcon icon={faBookOpen} size="2xl" className="text-[#AA1F64]" />
               </div>
-              <span className="text-[10px] font-bold uppercase tracking-widest text-[#9d1d5a]">Nosso catálogo</span>
+              <span className="text-[10px] font-bold uppercase tracking-widest text-[#AA1F64]">Nosso catálogo</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="bg-[#9d1d5a] text-white pt-16 pb-8 px-8 mt-12">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-center md:text-left">
-          <div>
-            <h4 className="text-[10px] font-bold tracking-[0.2em] mb-6 uppercase">Conheça a Vênus</h4>
-            <Award className="mx-auto md:mx-0 w-8 h-8 text-pink-300 mb-4" />
-          </div>
-          <div>
-            <h4 className="text-[10px] font-bold tracking-[0.2em] mb-6 uppercase">Como Chegar</h4>
-            <MapPin className="mx-auto md:mx-0 w-8 h-8 text-pink-300 mb-4" />
-          </div>
-          <div>
-            <h4 className="text-[10px] font-bold tracking-[0.2em] mb-6 uppercase">Nossos Contatos</h4>
-            <div className="flex justify-center md:justify-start gap-4 text-pink-300">
-              <GitBranch size={20} /><Share2 size={20} /><Phone size={20} />
-            </div>
-          </div>
-          <div>
-            <h4 className="text-[10px] font-bold tracking-[0.2em] mb-6 uppercase">Suporte ao Cliente</h4>
-            <Headphones className="mx-auto md:mx-0 w-8 h-8 text-pink-300 mb-4" />
-          </div>
-        </div>
-        <p className="text-center mt-16 text-[9px] opacity-50 uppercase tracking-[0.3em]">
-          Vênus Confeitaria © 2026 -- Todos os direitos reservados.
-        </p>
-      </footer>
+  {/* FOOTER - COMPONENTIZADO PARA ALINHAMENTO PERFEITO */}
+<footer className="bg-[#AA1F64] text-white pt-16 pb-8 px-8 mt-12">
+  <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+    
+    {/* Bloco 1: CakeSlice */}
+    <div className="grid grid-cols-1 justify-items-center md:justify-items-start gap-4">
+      <h4 className="text-[10px] font-bold tracking-[0.2em] uppercase text-center md:text-left">Conheça a Vênus</h4>
+      <div className="flex justify-center text-pink-200">
+        <FontAwesomeIcon icon={faCakeCandles} size="lg" className="hover:text-pink-300 cursor-pointer transition-colors" />
+      </div>
+    </div>
+
+    {/* Bloco 2: MapPin */}
+    <div className="grid grid-cols-1 justify-items-center md:justify-items-start gap-4">
+      <h4 className="text-[10px] font-bold tracking-[0.2em] uppercase">Como Chegar</h4>
+      <div className="flex justify-center text-pink-200">
+        <FontAwesomeIcon icon={faLocationDot} size="lg" className="hover:text-pink-300 cursor-pointer transition-colors" />
+      </div>
+    </div>
+
+    {/* Bloco 3: Redes Sociais (O seu modelo de sucesso) */}
+    <div className="grid grid-cols-1 justify-items-center md:justify-items-start gap-4">
+      <h4 className="text-[10px] font-bold tracking-[0.2em] uppercase">Nossos Contatos</h4>
+      <div className="flex justify-center gap-4 text-pink-200">
+        <FontAwesomeIcon icon={faInstagram} size="lg" className="hover:text-pink-300 cursor-pointer transition-colors" />
+        <FontAwesomeIcon icon={faFacebook} size="lg" className="hover:text-pink-300 cursor-pointer transition-colors" />
+        <FontAwesomeIcon icon={faWhatsapp} size="lg" className="hover:text-pink-300 cursor-pointer transition-colors" />
+      </div>
+    </div>
+
+    {/* Bloco 4: Headphones */}
+    <div className="grid grid-cols-1 justify-items-center md:justify-items-start gap-4">
+      <h4 className="text-[10px] font-bold tracking-[0.2em] uppercase">Suporte ao Cliente</h4>
+      <div className="flex justify-center text-pink-200">
+        <FontAwesomeIcon icon={faHeadphones} size="lg" className="hover:text-pink-300 cursor-pointer transition-colors" />
+      </div>
+    </div>
+
+  </div>
+
+  <p className="text-center mt-16 text-[9px] opacity-50 uppercase tracking-[0.3em]">
+    Vênus Confeitaria © 2026 -- Todos os direitos reservados.
+  </p>
+</footer>
     </div>
   )
 }
