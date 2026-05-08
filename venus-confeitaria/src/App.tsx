@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import SobreNos from './pages/SobreNos';
 import Fidelivenus from './pages/Fidelivenus';
 import MinhaConta from './pages/MinhaConta';
+import FavoritesPage from './pages/Favorites';
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
             <Route path="/SobreNos" element={<SobreNos />} />
             <Route path="/Fidelivenus" element={<Fidelivenus />} />
             <Route path="MinhaConta" element={<MinhaConta />} />
+            <Route path="/Favorites" element={<FavoritesPage />} />
           </Routes>
         </div>
         <Footer />
