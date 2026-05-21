@@ -22,7 +22,7 @@ const Icons = {
   )
 };
 
-export default function MinhaConta() {
+export default function MinhasCompras() {
   const [activeTab, setActiveTab] = useState<'cart' | 'history'>('cart');
 
   return (
@@ -33,7 +33,7 @@ export default function MinhaConta() {
           <button className="text-gray-400 hover:text-[#9d1d5a] transition-colors">
             <Icons.ArrowLeft />
           </button>
-          <span className="font-['Playfair_Display'] text-xl font-bold text-gray-800">Minha Conta</span>
+          <span className="font-['Playfair_Display'] text-xl font-bold text-gray-800">Minhas Compras</span>
           <div className="w-6"></div>
         </div>
       </nav>
@@ -142,7 +142,7 @@ export default function MinhaConta() {
                 </div>
                 <span className="text-[10px] uppercase tracking-widest font-black px-3 py-1.5 rounded-full bg-amber-100 text-amber-700">Em Preparação</span>
               </div>
-              <p className="text-sm text-gray-500 mb-6 font-medium">2 itens • Total: <span className="text-[#AA1f64] font-bold">€ 22.50</span></p>
+              <p className="text-sm text-gray-500 mb-6 font-medium">2 itens • Total: <span className="text-[#AA1f64] font-bold">R$ 22.50</span></p>
               <button className="w-full py-4 border border-pink-100 rounded-2xl text-[10px] font-black text-gray-400 hover:bg-[#AA1f64] hover:text-white hover:border-[#AA1f64] transition-all uppercase tracking-[0.3em]">
                 Ver Detalhes
               </button>
@@ -157,7 +157,7 @@ export default function MinhaConta() {
                 </div>
                 <span className="text-[10px] uppercase tracking-widest font-black px-3 py-1.5 rounded-full bg-emerald-100 text-emerald-700">Entregue</span>
               </div>
-              <p className="text-sm text-gray-500 mb-6 font-medium">1 item • Total: <span className="text-[#9d1d5a] font-bold">€ 40.00</span></p>
+              <p className="text-sm text-gray-500 mb-6 font-medium">1 item • Total: <span className="text-[#9d1d5a] font-bold">R$ 40.00</span></p>
               <button className="w-full py-4 border border-[#9d1d5a] rounded-2xl text-[10px] font-black text-[#9d1d5a] hover:bg-[#9d1d5a] hover:text-white transition-all uppercase tracking-[0.3em]">
                 Repetir Pedido
               </button>

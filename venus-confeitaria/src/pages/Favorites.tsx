@@ -5,7 +5,7 @@ const Icon = ({ name, className = "w-5 h-5" }: { name: string, className?: strin
   const icons: Record<string, JSX.Element> = {
     arrowLeft: <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />,
     heart: <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />,
-    cart: <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125(0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />,
+    cart: <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />,
     plus: <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />,
     grid: <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25a2.25 2.25 0 0 1-2.25 2.25h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25h-2.25a2.25 2.25 0 0 1-2.25-2.25v-2.25Z" />,
     search: <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />,
@@ -44,6 +44,11 @@ const FavoritesPage: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  // FUNÇÃO DO TRELLO: Remove o doce da lista de favoritos ao clicar no coração
+  const handleToggleFavorite = (id: number) => {
+    setFavorites(prevFavorites => prevFavorites.filter(item => item.id !== id));
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-[#FFF0FA] flex items-center justify-center">
@@ -54,16 +59,12 @@ const FavoritesPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#FFF0FA] font-sans pb-32">
-      {/* Header com Placeholder de Logo (para evitar erro de path inexistente) */}
       <nav className="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-pink-100">
         <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
           <button className="flex items-center gap-2 text-stone-400 hover:text-[#AA1F64] transition-all">
             <Icon name="arrowLeft" className="w-4 h-4" />
             <span className="text-[10px] font-bold uppercase tracking-widest hidden sm:inline">Voltar para Home</span>
           </button>
-          
-          
-
           <div className="w-10"></div>
         </div>
       </nav>
@@ -85,7 +86,12 @@ const FavoritesPage: React.FC = () => {
               <div key={item.id} className="bg-white rounded-[2.5rem] overflow-hidden border border-pink-50 group hover:shadow-2xl hover:shadow-pink-200/30 transition-all duration-500">
                 <div className="relative h-64 overflow-hidden bg-stone-100">
                   <img src={item.imagem} alt={item.nome} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                  <button className="absolute top-5 right-5 bg-white/90 backdrop-blur-md p-3 rounded-full text-[#AA1F64] shadow-lg">
+                  
+                  {/* CHAMADA DO STATE AO CLICAR NO CORAÇÃO */}
+                  <button 
+                    onClick={() => handleToggleFavorite(item.id)}
+                    className="absolute top-5 right-5 bg-white/90 backdrop-blur-md p-3 rounded-full text-[#AA1F64] shadow-lg hover:scale-110 transition-transform active:scale-90"
+                  >
                     <Icon name="heart" className="w-5 h-5 fill-current" />
                   </button>
                 </div>
@@ -93,7 +99,7 @@ const FavoritesPage: React.FC = () => {
                   <span className="text-[10px] font-bold text-[#AA1F64] uppercase tracking-[0.2em]">{item.categoria}</span>
                   <h3 className="font-serif text-2xl text-gray-800 mt-2 font-bold">{item.nome}</h3>
                   <div className="flex justify-between items-center mt-6">
-                    <span className="font-bold text-xl text-gray-900">€ {item.preco.toFixed(2)}</span>
+                    <span className="font-bold text-xl text-gray-900">R$ {item.preco.toFixed(2)}</span>
                     <button className="text-[10px] font-bold uppercase tracking-widest text-[#AA1F64] flex items-center gap-2 hover:opacity-70 transition-all">
                       Comprar <Icon name="cart" className="w-4 h-4" />
                     </button>
@@ -105,7 +111,7 @@ const FavoritesPage: React.FC = () => {
         )}
       </main>
 
-      {/* Navegação Mobile Estilo App */}
+      {/* Navegação Mobile Estilo App — Coração agora reflete a quantidade se quiser */}
       <div className="fixed bottom-8 left-1/2 -translate-x-1/2 w-[90%] max-w-xs bg-white/90 backdrop-blur-2xl border border-white/20 p-4 rounded-[2.5rem] shadow-2xl flex justify-around items-center md:hidden">
         <button className="p-2 text-stone-300"><Icon name="grid" /></button>
         <button className="p-2 text-stone-300"><Icon name="search" /></button>
@@ -114,7 +120,11 @@ const FavoritesPage: React.FC = () => {
             <Icon name="plus" />
           </button>
         </div>
-        <button className="p-2 text-[#AA1F64]"><Icon name="heart" className="fill-current" /></button>
+        
+        {/* Ícone de favorito na barra inferior que reage à quantidade de itens na lista */}
+        <button className={`p-2 transition-colors ${favorites.length > 0 ? 'text-[#AA1F64]' : 'text-stone-300'}`}>
+          <Icon name="heart" className={favorites.length > 0 ? "fill-current" : ""} />
+        </button>
         <button className="p-2 text-stone-300"><Icon name="user" /></button>
       </div>
     </div>

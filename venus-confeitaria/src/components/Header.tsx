@@ -9,8 +9,10 @@ import {
   faTimes, 
   faMagnifyingGlass, 
   // faChevronRight, 
-  faCakeCandles,
+  faLocationDot,
+  faCircleInfo
 } from '@fortawesome/free-solid-svg-icons';
+import { faFacebook, faInstagram, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import logo from '../assets/logo.png'; // Verifique se o caminho da logo está correto
 
 export default function Header() {
@@ -66,12 +68,12 @@ export default function Header() {
           </button>
           
           <nav className="flex flex-col gap-6 font-['Montserrat'] uppercase text-[10px] tracking-widest">
-            <Link to="/Favoritos" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-3">
+            <Link to="/Favorites" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-3">
               <FontAwesomeIcon icon={faHeart} /> Favoritos
             </Link>
             
             <Link to="/MinhaConta" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-3">
-              <FontAwesomeIcon icon={faShoppingCart} /> Minha Sacola
+              <FontAwesomeIcon icon={faShoppingCart} /> Minhas Compras
             </Link>
             
             <Link to="/Fidelivenus" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-3">
@@ -79,7 +81,23 @@ export default function Header() {
             </Link>
 
             <Link to="/SobreNos" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-3">
-              <FontAwesomeIcon icon={faCakeCandles} /> Sobre Nós
+              <FontAwesomeIcon icon={faCircleInfo} /> Sobre Nós
+            </Link>
+
+            <Link to="/https://maps.app.goo.gl/BEjryJBEsgsw46Js6" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-3">
+              <FontAwesomeIcon icon={faLocationDot} /> Como Chegar
+            </Link>
+
+            <Link to="/https://www.facebook.com/venusconfeitaria" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-3">
+              <FontAwesomeIcon icon={faFacebook} /> Facebook
+            </Link>
+
+            <Link to="/https://www.instagram.com/confeitaria.venus" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-3">
+              <FontAwesomeIcon icon={faInstagram} /> Instagram
+            </Link>
+
+            <Link to="/https://wa.me/5519993643988" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-3">
+              <FontAwesomeIcon icon={faWhatsapp} /> WhatsApp
             </Link>
             
             <button className="bg-white text-[#AA1F64] py-3 rounded-full font-bold mt-4">
