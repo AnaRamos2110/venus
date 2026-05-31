@@ -24,7 +24,6 @@ export default function Footer() {
         {/* COMO CHEGAR */}
         <div className="flex flex-col items-center text-center gap-3">
           <Link to="/ComoChegar" className="text-pink-200 hover:text-white transition-all hover:scale-110">
-             <FontAwesomeIcon icon={faLocationDot} className="text-xl" />
           </Link>
           <h4 className="text-[9px] font-bold tracking-[0.2em] uppercase opacity-80">
             Como Chegar
@@ -42,6 +41,7 @@ export default function Footer() {
             <FontAwesomeIcon icon={faFacebook} className="text-xl hover:text-white cursor-pointer transition-colors" />
             <FontAwesomeIcon icon={faWhatsapp} className="text-xl hover:text-white cursor-pointer transition-colors" />
           </div>
+          
         </div>
 
         {/* SUPORTE AO CLIENTE */}
