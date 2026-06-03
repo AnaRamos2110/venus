@@ -67,6 +67,7 @@ export default function Footer() {
               <FontAwesomeIcon icon={faWhatsapp} className="text-xl" />
             </a>
           </div>
+          
         </div>
 
         {/* SUPORTE AO CLIENTE */}
