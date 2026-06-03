@@ -6,6 +6,7 @@ import SobreNos from './pages/SobreNos';
 import Fidelivenus from './pages/Fidelivenus';
 import MinhaConta from './pages/MinhaConta';
 import FavoritesPage from './pages/Favorites';
+import Suporte from './pages/Suporte';
 
 export default function App() {
   return (
@@ -17,12 +18,14 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/SobreNos" element={<SobreNos />} />
             <Route path="/Fidelivenus" element={<Fidelivenus />} />
-            <Route path="MinhaConta" element={<MinhaConta />} />
+            <Route path="/MinhaConta" element={<MinhaConta />} />
             <Route path="/Favorites" element={<FavoritesPage />} />
           </Routes>
         </div>
         <Footer />
       </div>
+
+        <Suporte />
     </Router>
   );
 }

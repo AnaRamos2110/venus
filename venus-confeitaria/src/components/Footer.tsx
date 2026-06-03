@@ -21,26 +21,51 @@ export default function Footer() {
           </Link>
         </div>
 
-        {/* COMO CHEGAR */}
+        {/* COMO CHEGAR — Agora linkado diretamente para o Google Maps */}
         <div className="flex flex-col items-center text-center gap-3">
-          <Link to="/ComoChegar" className="text-pink-200 hover:text-white transition-all hover:scale-110">
-             <FontAwesomeIcon icon={faLocationDot} className="text-xl" />
-          </Link>
           <h4 className="text-[9px] font-bold tracking-[0.2em] uppercase opacity-80">
             Como Chegar
           </h4>
-          <FontAwesomeIcon icon={faLocationDot} className="text-xl text-pink-200" />
+          <a 
+            href="https://maps.app.goo.gl/BEjryJBEsgsw46Js6" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-pink-200 hover:text-white transition-all hover:scale-110"
+          >
+            <FontAwesomeIcon icon={faLocationDot} className="text-xl" />
+          </a>
         </div>
 
-        {/* NOSSOS CONTATOS */}
+        {/* NOSSOS CONTATOS — Redes sociais linkadas de verdade */}
         <div className="flex flex-col items-center text-center gap-3">
           <h4 className="text-[9px] font-bold tracking-[0.2em] uppercase opacity-80">
             Nossos Contatos
           </h4>
           <div className="flex gap-6 text-pink-200 justify-center">
-            <FontAwesomeIcon icon={faInstagram} className="text-xl hover:text-white cursor-pointer transition-colors" />
-            <FontAwesomeIcon icon={faFacebook} className="text-xl hover:text-white cursor-pointer transition-colors" />
-            <FontAwesomeIcon icon={faWhatsapp} className="text-xl hover:text-white cursor-pointer transition-colors" />
+            <a 
+              href="https://www.instagram.com/confeitaria.venus" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="hover:text-white transition-colors"
+            >
+              <FontAwesomeIcon icon={faInstagram} className="text-xl" />
+            </a>
+            <a 
+              href="https://www.facebook.com/venusconfeitaria" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="hover:text-white transition-colors"
+            >
+              <FontAwesomeIcon icon={faFacebook} className="text-xl" />
+            </a>
+            <a 
+              href="https://wa.me/5519993643988" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="hover:text-white transition-colors"
+            >
+              <FontAwesomeIcon icon={faWhatsapp} className="text-xl" />
+            </a>
           </div>
         </div>
 
@@ -49,10 +74,10 @@ export default function Footer() {
           <h4 className="text-[9px] font-bold tracking-[0.2em] uppercase opacity-80">
             Suporte ao Cliente
           </h4>
-          <div className="flex items-center gap-2 text-pink-200 justify-center">
-             <FontAwesomeIcon icon={faHeadphones} className="text-xl" />
-             <span className="text-[9px] uppercase tracking-widest text-white">Ouvidoria</span>
-          </div>
+          <Link to="/Ouvidoria" className="flex items-center gap-2 text-pink-200 justify-center hover:text-white transition-colors">
+            <FontAwesomeIcon icon={faHeadphones} className="text-xl" />
+            <span className="text-[9px] uppercase tracking-widest text-white">Ouvidoria</span>
+          </Link>
         </div>
 
       </div>
