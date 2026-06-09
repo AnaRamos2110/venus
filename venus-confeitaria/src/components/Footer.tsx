@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faFacebook, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
-import { faCakeCandles, faLocationDot, faHeadphones } from '@fortawesome/free-solid-svg-icons';
+import { faCakeCandles, faLocationDot, } from '@fortawesome/free-solid-svg-icons';
 
 export default function Footer() {
   return (
@@ -9,7 +9,7 @@ export default function Footer() {
     <footer className="hidden lg:block bg-[#AA1F64] text-white pt-12 pb-8 px-6 mt-16 font-['Montserrat']">
       
       {/* Grid de 4 colunas */}
-      <div className="max-w-6xl mx-auto grid grid-cols-4 gap-8 items-start">
+      <div className="max-w-6xl mx-auto grid grid-cols-3 gap-8 items-start">
         
         {/* CONHEÇA A VÊNUS */}
         <div className="flex flex-col items-center text-center gap-3">
@@ -70,17 +70,7 @@ export default function Footer() {
           
         </div>
 
-        {/* SUPORTE AO CLIENTE */}
-        <div className="flex flex-col items-center text-center gap-3">
-          <h4 className="text-[9px] font-bold tracking-[0.2em] uppercase opacity-80">
-            Suporte ao Cliente
-          </h4>
-          <Link to="/Ouvidoria" className="flex items-center gap-2 text-pink-200 justify-center hover:text-white transition-colors">
-            <FontAwesomeIcon icon={faHeadphones} className="text-xl" />
-            <span className="text-[9px] uppercase tracking-widest text-white">Ouvidoria</span>
-          </Link>
-        </div>
-
+     
       </div>
 
       <div className="max-w-6xl mx-auto border-t border-white/10 mt-12 pt-6">
