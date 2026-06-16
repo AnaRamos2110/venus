@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { db } from '../services/firebaseConfig';
 import { collection, getDocs, query, where } from 'firebase/firestore';
-
-// ... resto do código que te mandei antes
+import Carrossel from '../components/Carrossel'; // 1. IMPORTA O SEU NOVO CARROSSEL AQUI!
 
 // Tipagem para o TypeScript não reclamar
 interface Produto {
@@ -30,7 +29,7 @@ export default function Home() {
 
   useEffect(() => {
     const fetchData = async () => {
-      // 1. Busca Banners do Carrossel
+      // 1. Busca Banners do Carrossel (caso use os dados do Firebase futuramente)
       const carrosselSnap = await getDocs(collection(db, "carrossel"));
       setBanners(carrosselSnap.docs.map(doc => ({ id: doc.id, ...doc.data() } as Banner)));
 
@@ -49,15 +48,10 @@ export default function Home() {
 
   return (
     <main className="max-w-6xl mx-auto px-4 mt-8">
-      {/* SEÇÃO CARROSSEL */}
+      
+      {/* SEÇÃO CARROSSEL ATUALIZADA COM O COMPONENTE NOVO */}
       <section className="mb-12">
-        <div className="relative h-64 md:h-96 rounded-[3rem] overflow-hidden shadow-xl bg-white flex items-center justify-center border-8 border-white">
-          {banners.length > 0 ? (
-            <img src={banners[0].imagemUrl} className="w-full h-full object-cover" alt="Banner" />
-          ) : (
-            <p className="text-gray-400 font-['Playfair_Display'] italic text-2xl">Carrossel Vênus</p>
-          )}
-        </div>
+        <Carrossel />
       </section>
 
       {/* SEÇÃO PROMOÇÕES */}
@@ -65,7 +59,7 @@ export default function Home() {
         <h2 className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-700 mb-8 border-b border-white/50 pb-2">Promoções</h2>
         <div className="flex overflow-x-auto pb-4 gap-6 md:grid md:grid-cols-4 scrollbar-hide">
           {promocoes.map((produto) => (
-            <div key={produto.id} className="flex flex-col items-center min-w-140px group">
+            <div key={produto.id} className="flex flex-col items-center min-w-[140px] group">
               <div className="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-white shadow-lg bg-white mb-3 group-hover:scale-105 transition-transform overflow-hidden">
                 <img src={produto.imagemUrl} alt={produto.nome} className="w-full h-full object-cover" />
               </div>

@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import SobreNos from './pages/SobreNos';
 import Fidelivenus from './pages/Fidelivenus';
 import MinhaConta from './pages/MinhaConta';
-import Favoritos from './pages/Favoritos';
+import FavoritesPage from './pages/Favorites';
 import Suporte from './pages/Suporte';
 
 export default function App() {
@@ -19,7 +19,7 @@ export default function App() {
             <Route path="/SobreNos" element={<SobreNos />} />
             <Route path="/Fidelivenus" element={<Fidelivenus />} />
             <Route path="/MinhaConta" element={<MinhaConta />} />
-            <Route path="/Favorites" element={<Favoritos />} />
+            <Route path="/Favorites" element={<FavoritesPage />} />
           </Routes>
         </div>
         <Footer />

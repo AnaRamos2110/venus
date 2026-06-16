@@ -96,7 +96,7 @@ export default function SuporteFlutuante() {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="w-16 h-16 bg-[#AA1F64] text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all animate-pulinho-alegre"
+          className="w-16 h-16 bg-[#ee99c3] text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all animate-pulinho-alegre"
           aria-label="Abrir chat de suporte e ouvidoria"
         >
           <FontAwesomeIcon icon={faWhatsapp} size="lg" />
