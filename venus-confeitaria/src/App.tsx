@@ -7,6 +7,7 @@ import Fidelivenus from './pages/Fidelivenus';
 import MinhaConta from './pages/MinhaConta';
 import FavoritesPage from './pages/Favorites';
 import Suporte from './pages/Suporte';
+import Catalogo from './pages/Catalogo';
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         <div className="flex-1 grow">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/Catalogo" element={<Catalogo />} />
             <Route path="/SobreNos" element={<SobreNos />} />
             <Route path="/Fidelivenus" element={<Fidelivenus />} />
             <Route path="/MinhaConta" element={<MinhaConta />} />

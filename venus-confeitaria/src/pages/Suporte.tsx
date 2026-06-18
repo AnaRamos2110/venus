@@ -96,7 +96,7 @@ export default function SuporteFlutuante() {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="w-16 h-16 bg-[#ee99c3] text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all animate-pulinho-alegre"
+          className="w-16 h-16 bg-[#F2D5DA] text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all animate-pulinho-alegre"
           aria-label="Abrir chat de suporte e ouvidoria"
         >
           <FontAwesomeIcon icon={faWhatsapp} size="lg" />
@@ -144,7 +144,7 @@ export default function SuporteFlutuante() {
                   {msg.texto}
                 </div>
 
-                {/* Opções Interativas em formato de botões de clique (estilo Descomplica) */}
+                {/* Opções Interativas em formato de botões de clique */}
                 {msg.isBot && msg.opcoes && (
                   <div className="flex flex-wrap gap-2 mt-3 max-w-[90%] self-start">
                     {msg.opcoes.map((opcao, idx) => (
