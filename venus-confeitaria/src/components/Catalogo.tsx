@@ -67,7 +67,8 @@ export default function Catalogo() {
   useEffect(() => {
     const fetchProdutos = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, "produtos"));
+        // Alterado de "produtos" para "catalogo" para ler direto da sua coleção do Firebase!
+        const querySnapshot = await getDocs(collection(db, "catalogo"));
         const lista = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Produto));
         setProdutos(lista);
       } catch (error) {

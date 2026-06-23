@@ -7,7 +7,9 @@ import Fidelivenus from './pages/Fidelivenus';
 import MinhaConta from './pages/MinhaConta';
 import FavoritesPage from './pages/Favorites';
 import Suporte from './pages/Suporte';
-import Catalogo from './pages/Catalogo';
+import Catalogo from './components/Catalogo';
+import Login from './pages/Login'; 
+import NovoCadastro from './pages/NovoCadastro'; 
 
 export default function App() {
   return (
@@ -22,6 +24,8 @@ export default function App() {
             <Route path="/Fidelivenus" element={<Fidelivenus />} />
             <Route path="/MinhaConta" element={<MinhaConta />} />
             <Route path="/Favorites" element={<FavoritesPage />} />
+            <Route path="/Login" element={<Login />} />
+            <Route path="/NovoCadastro" element={<NovoCadastro />} />
           </Routes>
         </div>
         <Footer />
