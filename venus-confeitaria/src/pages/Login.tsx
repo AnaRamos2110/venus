@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../services/firebaseConfig';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, sendPasswordResetEmail} from 'firebase/auth';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -36,17 +36,41 @@ export default function Login() {
     }
   };
 
-  const handleRecuperarSenha = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSucesso(`Token enviado com sucesso via ${metodoRecuperar.toUpperCase()} para: ${inputRecuperar}`);
-    
-    // Conforme o Trello: Após alterada, voltar para o Login
+  const handleRecuperarSenha = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setErro('');
+  setSucesso('');
+
+  try {
+    // 1. SE FOR E-MAIL: Dispara o fluxo REAL de luxo do Firebase
+    if (metodoRecuperar === 'email') {
+      await sendPasswordResetEmail(auth, inputRecuperar);
+      setSucesso("E-mail de redefinição enviado com sucesso! Confira sua caixa de entrada.");
+    } 
+    // 2. SE FOR SMS OU WHATSAPP: Mantém a simulação do Trello
+    else {
+      setSucesso(`Código de verificação enviado via ${metodoRecuperar.toUpperCase()} para: ${inputRecuperar}`);
+    }
+
+    // Conforme o Trello: Após alterada, voltar para o Login sozinho
     setTimeout(() => {
       setSucesso('');
       setTelaRecuperar(false);
       setInputRecuperar('');
-    }, 3500);
-  };
+    }, 4000);
+
+  } catch (err: any) {
+    console.error(err);
+    // Trata erros comuns (ex: e-mail digitado errado ou que não existe no banco)
+    if (err.code === 'auth/invalid-email') {
+      setErro('O formato do e-mail digitado é inválido.');
+    } else if (err.code === 'auth/user-not-found') {
+      setErro('Este e-mail não está cadastrado no Ateliê.');
+    } else {
+      setErro('Erro ao enviar redefinição. Tente novamente.');
+    }
+  }
+};
 
   return (
     <div className="min-h-screen bg-[#FFF0FA] flex items-center justify-center p-4 font-['Montserrat']">

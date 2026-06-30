@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'; // Adicionado useEffect aqui
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
@@ -13,13 +13,37 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faInstagram, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import logo from '../assets/logo.png'; // Verifique se o caminho da logo está correto
+import { useNavigate } from 'react-router-dom'; // Importando useNavigate para navegação programática  
+
+// 1. IMPORTAÇÕES DO FIREBASE (Coloque aqui no topo)
+import { auth } from '../services/firebaseConfig';
+import { onAuthStateChanged, signOut, type User } from 'firebase/auth';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  
+  const navigate = useNavigate(); // Inicializando o hook de navegação
+
+  // 2. ESTADO PARA GUARDAR O USUÁRIO LOGADO
+  const [usuario, setUsuario] = useState<User | null>(null);
+
   // Nossos estados recuperados do merge
   const [termoBusca, setTermoBusca] = useState('');
   const [isSearchOpenMobile, setIsSearchOpenMobile] = useState(false);
+
+  // 3. MONITORADOR EM TEMPO REAL (Fica escutando se o cliente logou ou deslogou)
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUsuario(user); 
+    });
+    return () => unsubscribe(); 
+  }, []);
+
+  // 4. FUNÇÃO PARA DESLOGAR O USUÁRIO
+  const handleLogout = async () => {
+    await signOut(auth);
+    setIsMenuOpen(false); // Fecha o menu lateral ao deslogar no mobile
+    navigate('/'); 
+  };
 
   // Função para quando o usuário der enter na busca
   const handleSearchSubmit = (e: React.FormEvent) => {
@@ -36,15 +60,6 @@ export default function Header() {
           {/* Botão do Menu Hamburguer Lateral */}
           <button className="md:hidden text-white shrink-0" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             <FontAwesomeIcon icon={isMenuOpen ? faTimes : faBars} size="lg" />
-          </button>
-
-          {/* LUPA EXCLUSIVA PARA MOBILE/TABLET (Abre a tela rosa) */}
-          <button 
-            onClick={() => setIsSearchOpenMobile(true)} 
-            className="md:hidden p-2 text-white hover:opacity-80 transition-all shrink-0 ml-auto"
-            aria-label="Abrir pesquisa de produtos"
-          >
-            <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
           </button>
 
           {/* BARRA DE PESQUISA ORIGINAL PARA COMPUTADOR */}
@@ -67,12 +82,32 @@ export default function Header() {
 
           {/* LINKS E BOTÕES DA DIREITA (COMPUTADOR) */}
           <div className="hidden md:flex items-center gap-9">
-            <button 
-              className="bg-white text-[#AA1F64] px-5 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-pink-50 transition-all"
-              aria-label="Fazer login no sistema corporativo"
-            >
-              Fazer Login
-            </button>
+            {usuario ? (
+              <div className="flex items-center gap-3">
+                {/* Nome exibido em branco combinando perfeitamente com a barra */}
+                <span className="text-xs font-bold tracking-wide text-white">
+                  Olá, <span className="capitalize">{usuario.displayName?.split(' ')[0] || 'Ana'}</span> ✨
+                </span>
+                
+                {/* Botão de Sair mantendo o seu estilo clássico arredondado */}
+                <button 
+                  onClick={handleLogout} 
+                  className="bg-white text-[#AA1F64] px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-pink-50 transition-all active:scale-95" 
+                  aria-label="Sair"
+                >
+                  Sair
+                </button>
+              </div>
+            ) : (
+              /* Seu botão branco clássico do print, só aparece se estiver deslogada */
+              <button 
+                onClick={() => navigate('/Login')}
+                className="bg-white text-[#AA1F64] px-5 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-pink-50 transition-all"
+                aria-label="Fazer login"
+              >
+                Fazer Login
+              </button>
+            )}
             
             <div className="flex gap-9 text-white items-center">
               <Link to="/Favorites" aria-label="Ir para a página de produtos favoritos">
@@ -91,7 +126,7 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Menu Mobile Lateral (Seu Menu Lindo e Intocado) */}
+      {/* Menu Mobile Lateral (Responsivo Inteligente agora!) */}
       <aside className={`fixed inset-y-0 left-0 w-64 bg-[#AA1F64] text-white z-60 transform ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out md:hidden shadow-2xl`}>
         <div className="p-6 flex flex-col gap-6">
           <button onClick={() => setIsMenuOpen(false)} className="self-end p-2" aria-label="Fechar menu">
@@ -131,9 +166,27 @@ export default function Header() {
               <FontAwesomeIcon icon={faWhatsapp} /> WhatsApp
             </a>
             
-            <button className="bg-white text-[#AA1F64] py-3 rounded-full font-bold mt-4">
-              Fazer Login
-            </button>
+            {/* LÓGICA CONDICIONAL DO MOBILE ADICIONADA AQUI ABAIXO */}
+            {usuario ? (
+              <div className="flex flex-col gap-3 mt-4 pt-4 border-t border-white/20 text-center">
+                <span className="text-[11px] font-bold tracking-wider normal-case text-pink-200">
+                  Logado como: <b className="text-white capitalize">{usuario.displayName?.split(' ')[0] || 'Ana'}</b> ✨
+                </span>
+                <button 
+                  onClick={handleLogout} 
+                  className="bg-red-500/20 hover:bg-red-500/40 text-red-200 border border-red-500/30 py-3 rounded-full font-black uppercase text-[10px] tracking-widest transition-all"
+                >
+                  Sair da Conta
+                </button>
+              </div>
+            ) : (
+              <button 
+                onClick={() => { setIsMenuOpen(false); navigate('/Login'); }} 
+                className="bg-white text-[#AA1F64] py-3 rounded-full font-bold mt-4 text-[10px] tracking-widest transition-all"
+              >
+                Fazer Login
+              </button>
+            )}
           </nav>
         </div>
       </aside>
